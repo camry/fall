@@ -38,3 +38,8 @@ func (f *Fall) Ctx() context.Context {
 func (f *Fall) Seed() int64 {
     return f.seed
 }
+
+// Rand 种子随机数对象。
+func (f *Fall) Rand() *grand.GRand {
+    return f.rand
+}
