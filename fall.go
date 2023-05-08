@@ -2,6 +2,7 @@ package fall
 
 import (
     "context"
+    "github.com/camry/g/gutil/grand"
     "time"
 
     "github.com/camry/g/glog"
@@ -10,7 +11,8 @@ import (
 // Fall 掉落对象。
 type Fall struct {
     ctx  context.Context // 上下文。
-    seed int64           // 随机种子
+    seed int64           // 随机种子。
+    rand *grand.GRand    // 种子随机数对象。
 }
 
 // New 新建掉落对象。
@@ -22,7 +24,8 @@ func New(opts ...Option) *Fall {
     for _, opt := range opts {
         opt(f)
     }
-    glog.Debug("Fall New")
+    f.rand = grand.NewRand(f.seed)
+    glog.Debug("Fall New Finished")
     return f
 }
 
