@@ -48,7 +48,7 @@ func TableVats(tableVats []*pb.TableVat) Option {
     return func(f *Fall) { f.tableVats = tableVats }
 }
 
-// AdvanceNum 设置进阶次数。
-func AdvanceNum(advanceNum int32) Option {
-    return func(f *Fall) { f.attrVirtual.AdvanceNum = advanceNum }
+// AdvanceSubsets 设置进阶子集列表。
+func AdvanceSubsets(advanceSubsets map[uint32]*pb.AdvanceSubset) Option {
+    return func(f *Fall) { f.attrVirtual.AdvanceSubsets = advanceSubsets }
 }

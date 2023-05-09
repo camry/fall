@@ -5,7 +5,7 @@ option go_package = ".;pb";
 
 // 掉落虚拟属性
 message AttrVirtual {
-  map<uint32, AdvanceSubset> advanceSubsets = 1; // 进阶子集
+  map<uint32, AdvanceSubset> advanceSubsets = 1; // 进阶子集列表
 }
 
 // 进阶子集

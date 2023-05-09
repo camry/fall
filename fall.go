@@ -92,9 +92,17 @@ func (f *Fall) TableVats() []*pb.TableVat {
     return f.tableVats
 }
 
-// AdvanceNum 进阶次数。
-func (f *Fall) AdvanceNum() int32 {
-    return f.attrVirtual.GetAdvanceNum()
+// AdvanceSubset 进阶子集。
+func (f *Fall) AdvanceSubset(subsetId uint32) (*pb.AdvanceSubset, error) {
+    if advanceSubset, ok := f.AdvanceSubsets()[subsetId]; ok {
+        return advanceSubset, nil
+    }
+    return nil, gerror.Newf(`fall.AdvanceSubset %d Is Not Exist`, subsetId)
+}
+
+// AdvanceSubsets 进阶子集列表。
+func (f *Fall) AdvanceSubsets() map[uint32]*pb.AdvanceSubset {
+    return f.attrVirtual.GetAdvanceSubsets()
 }
 
 // Run 开始执行。
