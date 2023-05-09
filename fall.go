@@ -30,6 +30,7 @@ type Fall struct {
     tableWeightGroupSubsets []*pb.TableWeightGroupSubset // 配置表（权重掉落组式掉落子集列表）。
     tableAdvances           []*pb.TableAdvance           // 配置表（进阶掉落列表）。
     tableVats               []*pb.TableVat               // 配置表（木桶原理掉落列表）。
+    attrVirtual             *pb.AttrVirtual              // 掉落虚拟属性。
 }
 
 // New 新建掉落对象。
@@ -89,6 +90,11 @@ func (f *Fall) TableAdvances() []*pb.TableAdvance {
 // TableVats 配置表（木桶原理掉落列表）。
 func (f *Fall) TableVats() []*pb.TableVat {
     return f.tableVats
+}
+
+// AdvanceNum 进阶次数。
+func (f *Fall) AdvanceNum() int32 {
+    return f.attrVirtual.GetAdvanceNum()
 }
 
 // Run 开始执行。

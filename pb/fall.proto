@@ -1,0 +1,9 @@
+syntax = "proto3";
+package pb;
+
+option go_package = ".;pb";
+
+// 掉落虚拟属性
+message AttrVirtual {
+  int32 advanceNum = 1; // 进阶次数
+}

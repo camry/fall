@@ -47,3 +47,8 @@ func TableAdvances(tableAdvances []*pb.TableAdvance) Option {
 func TableVats(tableVats []*pb.TableVat) Option {
     return func(f *Fall) { f.tableVats = tableVats }
 }
+
+// AdvanceNum 设置进阶次数。
+func AdvanceNum(advanceNum int32) Option {
+    return func(f *Fall) { f.attrVirtual.AdvanceNum = advanceNum }
+}
