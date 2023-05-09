@@ -42,3 +42,15 @@ func TestRunPercent(t *testing.T) {
         assert.Equal(t, v[i].GetNum(), item.GetNum())
     }
 }
+
+func TestRunWeightGroup(t *testing.T) {
+    // TODO TestRunWeightGroup
+}
+
+func TestRunAdvance(t *testing.T) {
+    // TODO TestRunAdvance
+}
+
+func TestVat(t *testing.T) {
+    // TODO TestVat
+}
