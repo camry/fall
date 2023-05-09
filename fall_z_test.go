@@ -1,10 +1,11 @@
 package fall_test
 
 import (
+    "testing"
+
     "github.com/camry/fall"
     "github.com/camry/fall/pb"
     "github.com/stretchr/testify/assert"
-    "testing"
 )
 
 func TestNew(t *testing.T) {
