@@ -53,5 +53,5 @@ func TestRunAdvance(t *testing.T) {
 }
 
 func TestVat(t *testing.T) {
-    // TODO TestVat
+    // TODO TestVat XXX
 }
