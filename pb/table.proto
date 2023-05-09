@@ -1,0 +1,28 @@
+syntax = "proto3";
+package pb;
+
+option go_package = ".;pb";
+
+// 逐个百分比掉落表
+message TablePercent {
+  uint32 id = 1;
+  float prob = 2;
+  uint32 min = 3;
+  uint32 max = 4;
+}
+
+// 权重掉落组式掉落母集表
+message TableWeightGroupMaster {
+}
+
+// 权重掉落组式掉落子集表
+message TableWeightGroupSubset {
+}
+
+// 进阶掉落表
+message TableAdvance {
+}
+
+// 木桶原理掉落表
+message TableVat {
+}

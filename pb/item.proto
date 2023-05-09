@@ -1,0 +1,9 @@
+syntax = "proto3";
+package pb;
+
+option go_package = ".;pb";
+
+message Item {
+  uint32 id = 1;
+  uint32 num = 2;
+}

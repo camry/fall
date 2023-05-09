@@ -1,6 +1,10 @@
 package fall
 
-import "context"
+import (
+    "context"
+
+    "github.com/camry/fall/pb"
+)
 
 type Option func(f *Fall)
 
@@ -17,4 +21,29 @@ func Seed(seed int64) Option {
 // Mode 设置掉落模式。
 func Mode(mode DropMode) Option {
     return func(f *Fall) { f.mode = mode }
+}
+
+// TablePercents 设置配置表（逐个百分比掉落列表）。
+func TablePercents(tablePercents []*pb.TablePercent) Option {
+    return func(f *Fall) { f.tablePercents = tablePercents }
+}
+
+// TableWeightGroupMasters 设置配置表（权重掉落组式掉落母集列表）。
+func TableWeightGroupMasters(tableWeightGroupMasters []*pb.TableWeightGroupMaster) Option {
+    return func(f *Fall) { f.tableWeightGroupMasters = tableWeightGroupMasters }
+}
+
+// TableWeightGroupSubsets 设置配置表（权重掉落组式掉落子集列表）。
+func TableWeightGroupSubsets(tableWeightGroupSubsets []*pb.TableWeightGroupSubset) Option {
+    return func(f *Fall) { f.tableWeightGroupSubsets = tableWeightGroupSubsets }
+}
+
+// TableAdvances 设置配置表（进阶掉落列表）。
+func TableAdvances(tableAdvances []*pb.TableAdvance) Option {
+    return func(f *Fall) { f.tableAdvances = tableAdvances }
+}
+
+// TableVats 设置配置表（木桶原理掉落列表）。
+func TableVats(tableVats []*pb.TableVat) Option {
+    return func(f *Fall) { f.tableVats = tableVats }
 }

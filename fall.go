@@ -2,10 +2,12 @@ package fall
 
 import (
     "context"
-    "github.com/camry/g/gutil/grand"
     "time"
 
+    "github.com/camry/fall/pb"
+    "github.com/camry/g/gerrors/gerror"
     "github.com/camry/g/glog"
+    "github.com/camry/g/gutil/grand"
 )
 
 type DropMode int8
@@ -13,16 +15,21 @@ type DropMode int8
 const (
     PercentMode     DropMode = iota + 1 // 逐个百分比掉落
     WeightGroupMode                     // 权重掉落组式掉落
-    AdvancedMode                        // 进阶掉落
+    AdvanceMode                         // 进阶掉落
     VatMode                             // 木桶原理掉落
 )
 
 // Fall 掉落对象。
 type Fall struct {
-    ctx  context.Context // 上下文。
-    seed int64           // 随机种子。
-    rand *grand.GRand    // 种子随机数对象。
-    mode DropMode        // 掉落模式。
+    ctx                     context.Context              // 上下文。
+    seed                    int64                        // 随机种子。
+    rand                    *grand.GRand                 // 种子随机数对象。
+    mode                    DropMode                     // 掉落模式。
+    tablePercents           []*pb.TablePercent           // 配置表（逐个百分比掉落列表）。
+    tableWeightGroupMasters []*pb.TableWeightGroupMaster // 配置表（权重掉落组式掉落母集列表）。
+    tableWeightGroupSubsets []*pb.TableWeightGroupSubset // 配置表（权重掉落组式掉落子集列表）。
+    tableAdvances           []*pb.TableAdvance           // 配置表（进阶掉落列表）。
+    tableVats               []*pb.TableVat               // 配置表（木桶原理掉落列表）。
 }
 
 // New 新建掉落对象。
@@ -57,4 +64,45 @@ func (f *Fall) Rand() *grand.GRand {
 // Mode 掉落模式。
 func (f *Fall) Mode() DropMode {
     return f.mode
+}
+
+// TablePercents 配置表（逐个百分比掉落列表）。
+func (f *Fall) TablePercents() []*pb.TablePercent {
+    return f.tablePercents
+}
+
+// TableWeightGroupMasters 配置表（权重掉落组式掉落母集列表）。
+func (f *Fall) TableWeightGroupMasters() []*pb.TableWeightGroupMaster {
+    return f.tableWeightGroupMasters
+}
+
+// TableWeightGroupSubsets 配置表（权重掉落组式掉落子集列表）。
+func (f *Fall) TableWeightGroupSubsets() []*pb.TableWeightGroupSubset {
+    return f.tableWeightGroupSubsets
+}
+
+// TableAdvances 配置表（进阶掉落列表）。
+func (f *Fall) TableAdvances() []*pb.TableAdvance {
+    return f.tableAdvances
+}
+
+// TableVats 配置表（木桶原理掉落列表）。
+func (f *Fall) TableVats() []*pb.TableVat {
+    return f.tableVats
+}
+
+// Run 开始执行。
+func (f *Fall) Run() ([]*pb.Item, error) {
+    switch f.Mode() {
+    case PercentMode:
+        return f.runPercent()
+    case WeightGroupMode:
+        return f.runWeightGroup()
+    case AdvanceMode:
+        return f.runAdvance()
+    case VatMode:
+        return f.runVat()
+    default:
+        return nil, gerror.Newf(`Unknown DropMode %d`, f.Mode())
+    }
 }

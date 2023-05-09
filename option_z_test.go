@@ -20,6 +20,6 @@ func TestSeed(t *testing.T) {
 }
 
 func TestMode(t *testing.T) {
-    f := fall.New(fall.Mode(fall.AdvancedMode))
-    assert.Equal(t, fall.AdvancedMode, f.Mode())
+    f := fall.New(fall.Mode(fall.AdvanceMode))
+    assert.Equal(t, fall.AdvanceMode, f.Mode())
 }
