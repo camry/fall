@@ -4,6 +4,7 @@ package pb;
 option go_package = ".;pb";
 
 message Item {
-  uint32 id = 1;
-  uint32 num = 2;
+  uint32 type = 1;
+  uint32 id = 2;
+  uint32 num = 3;
 }

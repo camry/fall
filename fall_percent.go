@@ -13,7 +13,11 @@ func (f *Fall) runPercent() ([]*pb.Item, error) {
     var items []*pb.Item
     for _, v := range f.TablePercents() {
         if f.Rand().HitProb(v.GetProb()) {
-            items = append(items, &pb.Item{Id: v.GetId(), Num: uint32(f.Rand().Intn(int(v.GetMax()-v.GetMin()))) + v.GetMin()})
+            items = append(items, &pb.Item{
+                Type: v.GetType(),
+                Id:   v.GetId(),
+                Num:  uint32(f.Rand().Intn(int(v.GetMax()-v.GetMin()))) + v.GetMin()},
+            )
         }
     }
     return items, nil
