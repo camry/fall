@@ -13,3 +13,8 @@ func Context(ctx context.Context) Option {
 func Seed(seed int64) Option {
     return func(f *Fall) { f.seed = seed }
 }
+
+// Mode 设置掉落模式。
+func Mode(mode DropMode) Option {
+    return func(f *Fall) { f.mode = mode }
+}

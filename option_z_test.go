@@ -18,3 +18,8 @@ func TestSeed(t *testing.T) {
     f := fall.New(fall.Seed(10000))
     assert.Equal(t, int64(10000), f.Seed())
 }
+
+func TestMode(t *testing.T) {
+    f := fall.New(fall.Mode(fall.AdvancedMode))
+    assert.Equal(t, fall.AdvancedMode, f.Mode())
+}
