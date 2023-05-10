@@ -16,8 +16,8 @@ func (f *Fall) runPercent() ([]*pb.Item, error) {
             items = append(items, &pb.Item{
                 Type: v.GetType(),
                 Id:   v.GetId(),
-                Num:  uint32(f.Rand().Intn(int(v.GetMax()-v.GetMin()))) + v.GetMin()},
-            )
+                Num:  uint32(f.Rand().RangeInt(int(v.GetMin()), int(v.GetMax()))),
+            })
         }
     }
     return items, nil

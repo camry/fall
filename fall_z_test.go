@@ -22,7 +22,7 @@ func TestRand(t *testing.T) {
 
 func TestRunPercent(t *testing.T) {
     f := fall.New(
-        fall.Seed(1683614541708899000),
+        fall.Seed(1683699333882771600),
         fall.Mode(fall.PercentMode),
         fall.TablePercents([]*pb.TablePercent{
             {Type: 1, Id: 1, Prob: 0.15, Min: 1, Max: 2},
@@ -34,7 +34,8 @@ func TestRunPercent(t *testing.T) {
     items, err := f.Run()
     assert.Nil(t, err)
     v := []*pb.Item{
-        {Type: 1, Id: 3, Num: 1},
+        {Type: 1, Id: 2, Num: 2},
+        {Type: 1, Id: 3, Num: 3},
         {Type: 1, Id: 4, Num: 2},
     }
     for i, item := range items {
