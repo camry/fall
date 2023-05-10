@@ -10,7 +10,7 @@ func (f *Fall) runPercent() ([]*pb.Item, error) {
     if len(f.tablePercents) <= 0 {
         return nil, gerror.Newf(`fall.TablePercents Is Empty`)
     }
-    var items []*pb.Item
+    items := make([]*pb.Item, 0, 10)
     for _, v := range f.TablePercents() {
         if f.Rand().HitProb(v.GetProb()) {
             items = append(items, &pb.Item{
