@@ -16,10 +16,9 @@ message TablePercent {
 message TableWeightGroupMaster {
   uint32 master_id = 1; // 母集编号
   uint32 subset_id = 2; // 子集编号
-  uint32 subset_desc = 3; // 子集说明
-  uint32 next_subset_id = 4; // 进阶子集
-  uint32 next_subset_min = 5; // 最小进阶次数
-  uint32 next_subset_max = 6; // 最大进阶次数
+  uint32 next_subset_id = 3; // 进阶子集
+  uint32 next_subset_min = 4; // 最小进阶次数
+  uint32 next_subset_max = 5; // 最大进阶次数
 }
 
 // 权重掉落组式掉落子集表
