@@ -28,7 +28,7 @@ func TablePercents(tablePercents []*pb.TablePercent) Option {
     return func(f *Fall) { f.tablePercents = tablePercents }
 }
 
-// TableWeightGroupMasters 设置配置表（权重掉落组式掉落母集列表）。
+// TableWeightGroupMasters 设置配置表（权重掉落组式掉落母集进阶掉落列表）。
 func TableWeightGroupMasters(tableWeightGroupMasters []*pb.TableWeightGroupMaster) Option {
     return func(f *Fall) { f.tableWeightGroupMasters = tableWeightGroupMasters }
 }
@@ -36,11 +36,6 @@ func TableWeightGroupMasters(tableWeightGroupMasters []*pb.TableWeightGroupMaste
 // TableWeightGroupSubsets 设置配置表（权重掉落组式掉落子集列表）。
 func TableWeightGroupSubsets(tableWeightGroupSubsets []*pb.TableWeightGroupSubset) Option {
     return func(f *Fall) { f.tableWeightGroupSubsets = tableWeightGroupSubsets }
-}
-
-// TableAdvances 设置配置表（进阶掉落列表）。
-func TableAdvances(tableAdvances []*pb.TableAdvance) Option {
-    return func(f *Fall) { f.tableAdvances = tableAdvances }
 }
 
 // TableVats 设置配置表（木桶原理掉落列表）。

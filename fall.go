@@ -26,9 +26,8 @@ type Fall struct {
     rand                    *grand.GRand                 // 种子随机数对象。
     mode                    DropMode                     // 掉落模式。
     tablePercents           []*pb.TablePercent           // 配置表（逐个百分比掉落列表）。
-    tableWeightGroupMasters []*pb.TableWeightGroupMaster // 配置表（权重掉落组式掉落母集列表）。
+    tableWeightGroupMasters []*pb.TableWeightGroupMaster // 配置表（权重掉落组式掉落母集进阶掉落列表）。
     tableWeightGroupSubsets []*pb.TableWeightGroupSubset // 配置表（权重掉落组式掉落子集列表）。
-    tableAdvances           []*pb.TableAdvance           // 配置表（进阶掉落列表）。
     tableVats               []*pb.TableVat               // 配置表（木桶原理掉落列表）。
     attrVirtual             *pb.AttrVirtual              // 掉落虚拟属性。
 }
@@ -80,11 +79,6 @@ func (f *Fall) TableWeightGroupMasters() []*pb.TableWeightGroupMaster {
 // TableWeightGroupSubsets 配置表（权重掉落组式掉落子集列表）。
 func (f *Fall) TableWeightGroupSubsets() []*pb.TableWeightGroupSubset {
     return f.tableWeightGroupSubsets
-}
-
-// TableAdvances 配置表（进阶掉落列表）。
-func (f *Fall) TableAdvances() []*pb.TableAdvance {
-    return f.tableAdvances
 }
 
 // TableVats 配置表（木桶原理掉落列表）。
