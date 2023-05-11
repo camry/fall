@@ -83,8 +83,8 @@ func TestRunAdvance(t *testing.T) {
         fall.Seed(1683699333882771600),
         fall.Mode(fall.AdvanceMode),
         fall.AdvanceSubsets(map[uint32]*pb.AdvanceSubset{
-            1001: {SubsetId: 1001, AdvanceNum: 3},
-            1002: {SubsetId: 1002, AdvanceNum: 0},
+            1001: {SubsetId: 1001, AdvanceNum: 2},
+            1002: {SubsetId: 1002, AdvanceNum: 2},
             1003: {SubsetId: 1003, AdvanceNum: 0},
             1004: {SubsetId: 1004, AdvanceNum: 0},
             1005: {SubsetId: 1005, AdvanceNum: 0},
@@ -111,9 +111,9 @@ func TestRunAdvance(t *testing.T) {
     items, err := f.Run()
     assert.Nil(t, err)
     v := []*pb.Item{
-        {Type: 1, Id: 0, Num: 7566},
-        {Type: 4, Id: 2, Num: 1},
-        {Type: 5, Id: 3, Num: 1},
+        {Type: 2, Id: 1, Num: 20},
+        {Type: 4, Id: 2, Num: 2},
+        {Type: 5, Id: 1, Num: 1},
     }
     for i, item := range items {
         assert.Equal(t, v[i].GetType(), item.GetType())

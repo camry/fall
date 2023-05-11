@@ -46,7 +46,6 @@ func TableVats(tableVats []*pb.TableVat) Option {
 }
 
 // AdvanceSubsets 设置进阶子集列表。
-// 注：子集没有掉落次数，默认传0。
 func AdvanceSubsets(advanceSubsets map[uint32]*pb.AdvanceSubset) Option {
     return func(f *Fall) { f.attrVirtual.AdvanceSubsets = advanceSubsets }
 }
