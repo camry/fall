@@ -34,8 +34,9 @@ type Fall struct {
 // New 新建掉落对象。
 func New(opts ...Option) *Fall {
     f := &Fall{
-        ctx:  context.Background(),
-        seed: time.Now().UnixNano(),
+        ctx:         context.Background(),
+        seed:        time.Now().UnixNano(),
+        attrVirtual: &pb.AttrVirtual{},
     }
     for _, opt := range opts {
         opt(f)

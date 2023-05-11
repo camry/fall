@@ -7,7 +7,7 @@ import (
 
 // runPercent 执行逐个百分比掉落。
 func (f *Fall) runPercent() ([]*pb.Item, error) {
-    if len(f.tablePercents) <= 0 {
+    if len(f.TablePercents()) <= 0 {
         return nil, gerror.Newf(`fall.TablePercents Is Empty`)
     }
     items := make([]*pb.Item, 0, 10)

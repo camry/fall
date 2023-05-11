@@ -7,5 +7,14 @@ import (
 
 // runAdvance 执行进阶掉落。
 func (f *Fall) runAdvance() ([]*pb.Item, error) {
-    return nil, gerror.Newf(`AdvanceMode Is Not Implement`)
+    if len(f.TableWeightGroupMasters()) <= 0 {
+        return nil, gerror.Newf(`runAdvance fall.TableWeightGroupMasters Is Empty`)
+    }
+    if len(f.TableWeightGroupSubsets()) <= 0 {
+        return nil, gerror.Newf(`runAdvance fall.TableWeightGroupSubsets Is Empty`)
+    }
+    if len(f.AdvanceSubsets()) <= 0 {
+        return nil, gerror.Newf(`runAdvance fall.AdvanceSubsets Is Empty`)
+    }
+    return f.dropAdvanceWeightGroup(true), nil
 }
