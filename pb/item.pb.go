@@ -20,14 +20,15 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
+// 掉落物品
 type Item struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Type uint32 `protobuf:"varint,1,opt,name=type,proto3" json:"type,omitempty"`
-	Id   uint32 `protobuf:"varint,2,opt,name=id,proto3" json:"id,omitempty"`
-	Num  uint32 `protobuf:"varint,3,opt,name=num,proto3" json:"num,omitempty"`
+	Type uint32 `protobuf:"varint,1,opt,name=type,proto3" json:"type,omitempty"` // 物品种类
+	Id   uint32 `protobuf:"varint,2,opt,name=id,proto3" json:"id,omitempty"`     // 物品编号
+	Num  uint32 `protobuf:"varint,3,opt,name=num,proto3" json:"num,omitempty"`   // 物品数量
 }
 
 func (x *Item) Reset() {

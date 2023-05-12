@@ -10,6 +10,6 @@ message AttrVirtual {
 
 // 进阶子集
 message AdvanceSubset {
-  uint32 subset_id = 1; // 子集ID
+  uint32 subset_id = 1; // 子集编号
   uint32 advance_num = 2; // 子集进阶次数
 }

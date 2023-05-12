@@ -74,7 +74,7 @@ type AdvanceSubset struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	SubsetId   uint32 `protobuf:"varint,1,opt,name=subset_id,json=subsetId,proto3" json:"subset_id,omitempty"`       // 子集ID
+	SubsetId   uint32 `protobuf:"varint,1,opt,name=subset_id,json=subsetId,proto3" json:"subset_id,omitempty"`       // 子集编号
 	AdvanceNum uint32 `protobuf:"varint,2,opt,name=advance_num,json=advanceNum,proto3" json:"advance_num,omitempty"` // 子集进阶次数
 }
 
