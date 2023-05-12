@@ -79,17 +79,13 @@ func (f *Fall) dropAdvanceWeightGroup(enableAdvance bool) []*pb.Item {
 
 // nextSubset 进阶子集。
 func (f *Fall) nextSubset(master *pb.TableWeightGroupMaster, tableWeightGroupMasters map[uint32]*pb.TableWeightGroupMaster) *pb.TableWeightGroupMaster {
-    if advanceSubset, ok := f.AdvanceSubsets()[master.GetSubsetId()]; ok {
-        advanceSubset.AdvanceNum++
-        y := uint32(f.Rand().RangeInt(int(master.GetNextSubsetMin()), int(master.GetNextSubsetMax())))
-        if advanceSubset.GetAdvanceNum() >= y {
-            if nextMaster, ok := tableWeightGroupMasters[master.GetNextSubsetId()]; ok {
-                advanceSubset.AdvanceNum = 0
-                return f.nextSubset(nextMaster, tableWeightGroupMasters)
-            }
+    master.AdvanceNum++
+    y := uint32(f.Rand().RangeInt(int(master.GetNextSubsetMin()), int(master.GetNextSubsetMax())))
+    if master.GetAdvanceNum() >= y {
+        if nextMaster, ok := tableWeightGroupMasters[master.GetNextSubsetId()]; ok {
+            master.AdvanceNum = 0
+            return f.nextSubset(nextMaster, tableWeightGroupMasters)
         }
-    } else {
-        f.attrVirtual.AdvanceSubsets[master.SubsetId] = &pb.AdvanceSubset{SubsetId: master.GetSubsetId(), AdvanceNum: 1}
     }
     return master
 }

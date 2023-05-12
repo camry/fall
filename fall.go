@@ -28,15 +28,13 @@ type Fall struct {
     tableWeightGroupMasters []*pb.TableWeightGroupMaster // 配置表（权重掉落组式掉落母集进阶掉落列表）。
     tableWeightGroupSubsets []*pb.TableWeightGroupSubset // 配置表（权重掉落组式掉落子集列表）。
     tableVats               []*pb.TableVat               // 配置表（木桶原理掉落列表）。
-    attrVirtual             *pb.AttrVirtual              // 掉落虚拟属性。
 }
 
 // New 新建掉落对象。
 func New(opts ...Option) *Fall {
     f := &Fall{
-        ctx:         context.Background(),
-        seed:        time.Now().UnixNano(),
-        attrVirtual: &pb.AttrVirtual{},
+        ctx:  context.Background(),
+        seed: time.Now().UnixNano(),
     }
     for _, opt := range opts {
         opt(f)
@@ -84,19 +82,6 @@ func (f *Fall) TableWeightGroupSubsets() []*pb.TableWeightGroupSubset {
 // TableVats 配置表（木桶原理掉落列表）。
 func (f *Fall) TableVats() []*pb.TableVat {
     return f.tableVats
-}
-
-// AdvanceSubset 进阶子集。
-func (f *Fall) AdvanceSubset(subsetId uint32) (*pb.AdvanceSubset, error) {
-    if advanceSubset, ok := f.AdvanceSubsets()[subsetId]; ok {
-        return advanceSubset, nil
-    }
-    return nil, gerror.Newf(`fall.AdvanceSubset %d Is Not Exist`, subsetId)
-}
-
-// AdvanceSubsets 进阶子集列表。
-func (f *Fall) AdvanceSubsets() map[uint32]*pb.AdvanceSubset {
-    return f.attrVirtual.GetAdvanceSubsets()
 }
 
 // Run 开始执行。

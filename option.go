@@ -44,8 +44,3 @@ func TableWeightGroupSubsets(tableWeightGroupSubsets []*pb.TableWeightGroupSubse
 func TableVats(tableVats []*pb.TableVat) Option {
     return func(f *Fall) { f.tableVats = tableVats }
 }
-
-// AdvanceSubsets 设置进阶子集列表。
-func AdvanceSubsets(advanceSubsets map[uint32]*pb.AdvanceSubset) Option {
-    return func(f *Fall) { f.attrVirtual.AdvanceSubsets = advanceSubsets }
-}

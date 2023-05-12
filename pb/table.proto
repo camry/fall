@@ -19,6 +19,7 @@ message TableWeightGroupMaster {
   uint32 next_subset_id = 3; // 进阶子集
   uint32 next_subset_min = 4; // 最小进阶次数
   uint32 next_subset_max = 5; // 最大进阶次数
+  uint32 advance_num = 6; // 现有进阶次数
 }
 
 // 权重掉落组式掉落子集表
@@ -33,15 +34,15 @@ message TableWeightGroupSubset {
 
 // 木桶原理掉落表
 message TableVat {
-    uint32 vat_id = 1; // 木桶编号
-    uint32 fall_type = 2; // 掉落种类
-    uint32 fall_type_id = 3; // 掉落种类编号
-    uint32 vat_num_min = 4; // 最小数量
-    uint32 vat_num_max = 5; // 最大数量
-    uint32 vat_weight = 6; // 权重（空缺量*系数加成）
-    uint32 expect_num = 7; // 预期量
-    uint32 existing_num = 8; // 现有量
-    uint32 vacancy_num = 9; // 空缺量（预期量-现有量）
-    float vacancy_prob = 10; // 空缺率（空缺量/预期量）
-    uint32 coefficient = 11; // 系数加成（4=空缺率>=90%,2=空缺率>=70% AND 空缺率<90%,DEFAULT 1）
+  uint32 vat_id = 1; // 木桶编号
+  uint32 fall_type = 2; // 掉落种类
+  uint32 fall_type_id = 3; // 掉落种类编号
+  uint32 vat_num_min = 4; // 最小数量
+  uint32 vat_num_max = 5; // 最大数量
+  uint32 vat_weight = 6; // 权重（空缺量*系数加成）
+  uint32 expect_num = 7; // 预期量
+  uint32 existing_num = 8; // 现有量
+  uint32 vacancy_num = 9; // 空缺量（预期量-现有量）
+  float vacancy_prob = 10; // 空缺率（空缺量/预期量）
+  uint32 coefficient = 11; // 系数加成（4=空缺率>=90%,2=空缺率>=70% AND 空缺率<90%,DEFAULT 1）
 }

@@ -13,8 +13,5 @@ func (f *Fall) runAdvance() ([]*pb.Item, error) {
     if len(f.TableWeightGroupSubsets()) <= 0 {
         return nil, gerror.Newf(`runAdvance fall.TableWeightGroupSubsets Is Empty`)
     }
-    if len(f.AdvanceSubsets()) <= 0 {
-        return nil, gerror.Newf(`runAdvance fall.AdvanceSubsets Is Empty`)
-    }
     return f.dropAdvanceWeightGroup(true), nil
 }
