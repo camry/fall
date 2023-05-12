@@ -3,7 +3,6 @@ package fall
 import (
     "github.com/camry/fall/pb"
     "github.com/camry/g/gerrors/gerror"
-    "github.com/camry/g/glog"
 )
 
 // runVat 执行木桶原理掉落。
@@ -15,10 +14,6 @@ func (f *Fall) runVat() ([]*pb.Item, error) {
     // 计算掉落权重
     var totalWeight uint32
     for _, vat := range f.TableVats() {
-        if vat.GetExpectNum() < vat.GetExistingNum() {
-            glog.Errorf(`runVat Error For vat.GetExpectNum() < vat.GetExistingNum()`)
-            continue
-        }
         // 计算空缺量 = 预期量 - 现有量
         vat.VacancyNum = vat.GetExpectNum() - vat.GetExistingNum()
         if vat.GetVacancyNum() < 10 {
