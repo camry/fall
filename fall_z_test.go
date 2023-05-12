@@ -123,5 +123,25 @@ func TestRunAdvance(t *testing.T) {
 }
 
 func TestVat(t *testing.T) {
-    // TODO TestVat
+    f := fall.New(
+        fall.Seed(1683699333882771600),
+        fall.Mode(fall.VatMode),
+        fall.TableVats([]*pb.TableVat{
+            {VatId: 10001, FallType: 101, FallTypeId: 1001, VatNumMin: 1, VatNumMax: 1, ExpectNum: 1000, ExistingNum: 0},
+            {VatId: 10001, FallType: 102, FallTypeId: 2001, VatNumMin: 1, VatNumMax: 1, ExpectNum: 1000, ExistingNum: 500},
+            {VatId: 10001, FallType: 103, FallTypeId: 3001, VatNumMin: 1, VatNumMax: 1, ExpectNum: 1000, ExistingNum: 600},
+            {VatId: 10001, FallType: 104, FallTypeId: 4001, VatNumMin: 1, VatNumMax: 1, ExpectNum: 1000, ExistingNum: 111},
+        }),
+    )
+    items, err := f.Run()
+    assert.Nil(t, err)
+    v := []*pb.Item{
+        {Type: 101, Id: 1001, Num: 1},
+        {Type: 104, Id: 4001, Num: 1},
+    }
+    for i, item := range items {
+        assert.Equal(t, v[i].GetType(), item.GetType())
+        assert.Equal(t, v[i].GetId(), item.GetId())
+        assert.Equal(t, v[i].GetNum(), item.GetNum())
+    }
 }

@@ -3,6 +3,7 @@ package fall
 import (
     "github.com/camry/fall/pb"
     "github.com/camry/g/gerrors/gerror"
+    "github.com/camry/g/glog"
 )
 
 // runWeightGroup 执行权重掉落组式掉落。
@@ -38,6 +39,7 @@ func (f *Fall) dropAdvanceWeightGroup(enableAdvance bool) []*pb.Item {
     for _, master := range f.TableWeightGroupMasters() {
         // 排除进阶子集
         if master.GetMasterId() <= 0 {
+            glog.Errorf(`fall dropAdvanceWeightGroup Error For master.GetMasterId() <= 0`)
             continue
         }
         // 判断母集是否产生进阶掉落
