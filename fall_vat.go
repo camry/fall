@@ -1,8 +1,9 @@
 package fall
 
 import (
-    "github.com/camry/fall/pb"
     "github.com/camry/g/gerrors/gerror"
+
+    "github.com/camry/fall/pb"
 )
 
 // runVat 执行木桶原理掉落。
@@ -12,7 +13,7 @@ func (f *Fall) runVat() ([]*pb.Item, error) {
     }
     items := make([]*pb.Item, 0, 10)
     // 计算掉落权重
-    var totalWeight uint32
+    var totalWeight int32
     for _, vat := range f.TableVats() {
         // 计算空缺量 = 预期量 - 现有量
         vat.VacancyNum = vat.GetExpectNum() - vat.GetExistingNum()
@@ -40,7 +41,7 @@ func (f *Fall) runVat() ([]*pb.Item, error) {
                 items = append(items, &pb.Item{
                     Type: vat.GetFallType(),
                     Id:   vat.GetFallTypeId(),
-                    Num:  uint32(f.Rand().RangeInt(int(vat.GetVatNumMin()), int(vat.GetVatNumMax()))),
+                    Num:  int32(f.Rand().RangeInt(int(vat.GetVatNumMin()), int(vat.GetVatNumMax()))),
                 })
             }
         }

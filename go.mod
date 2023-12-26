@@ -3,9 +3,9 @@ module github.com/camry/fall
 go 1.20
 
 require (
-	github.com/camry/g v1.2.7
-	github.com/stretchr/testify v1.8.2
-	google.golang.org/protobuf v1.30.0
+	github.com/camry/g v1.2.10
+	github.com/stretchr/testify v1.8.4
+	google.golang.org/protobuf v1.32.0
 )
 
 require (

@@ -5,7 +5,7 @@ option go_package = ".;pb";
 
 // 掉落物品
 message Item {
-  uint32 type = 1; // 物品种类
-  uint32 id = 2; // 物品编号
-  uint32 num = 3; // 物品数量
+  int32 type = 1; // 物品种类
+  int32 id = 2; // 物品编号
+  int32 num = 3; // 物品数量
 }

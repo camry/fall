@@ -1,8 +1,9 @@
 package fall
 
 import (
-    "github.com/camry/fall/pb"
     "github.com/camry/g/gerrors/gerror"
+
+    "github.com/camry/fall/pb"
 )
 
 // runPercent 执行逐个百分比掉落。
@@ -16,7 +17,7 @@ func (f *Fall) runPercent() ([]*pb.Item, error) {
             items = append(items, &pb.Item{
                 Type: v.GetType(),
                 Id:   v.GetId(),
-                Num:  uint32(f.Rand().RangeInt(int(v.GetMin()), int(v.GetMax()))),
+                Num:  int32(f.Rand().RangeInt(int(v.GetMin()), int(v.GetMax()))),
             })
         }
     }
