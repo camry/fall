@@ -50,11 +50,11 @@ func (f *Fall) dropAdvanceWeightGroup(enableAdvance bool) []*pb.Item {
         }
         // 生成基于总权重的随机数
         subsetTotalWeight := subsetTotalWeights[subsetId]
+        randWeight := int32(f.Rand().RangeInt(1, int(subsetTotalWeight)))
         // 判断掉落哪些物品
         var rangeWeightLast, rangeWeightCurrent int32
         for i, subset := range tableWeightGroupSubsets[subsetId] {
             isDrop := false
-            randWeight := int32(f.Rand().RangeInt(1, int(subsetTotalWeight)))
             rangeWeightCurrent += subset.GetSubsetWeight()
             if i > 0 {
                 if randWeight > rangeWeightLast && randWeight < rangeWeightCurrent {
@@ -72,6 +72,7 @@ func (f *Fall) dropAdvanceWeightGroup(enableAdvance bool) []*pb.Item {
                     Id:   subset.GetFallTypeId(),
                     Num:  int32(f.Rand().RangeInt(int(subset.GetSubsetNumMin()), int(subset.GetSubsetNumMax()))),
                 })
+                break
             }
         }
     }
