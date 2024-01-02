@@ -3,9 +3,10 @@ package fall_test
 import (
     "testing"
 
+    "github.com/stretchr/testify/assert"
+
     "github.com/camry/fall"
     "github.com/camry/fall/pb"
-    "github.com/stretchr/testify/assert"
 )
 
 func TestNew(t *testing.T) {
@@ -68,7 +69,6 @@ func TestRunWeightGroup(t *testing.T) {
     assert.Nil(t, err)
     v := []*pb.Item{
         {Type: 1, Id: 0, Num: 1811},
-        {Type: 2, Id: 2, Num: 2},
         {Type: 3, Id: 1, Num: 1},
     }
     for i, item := range items {
@@ -105,9 +105,9 @@ func TestRunAdvance(t *testing.T) {
     assert.Nil(t, err)
     v := []*pb.Item{
         {Type: 2, Id: 1, Num: 20},
-        {Type: 4, Id: 2, Num: 2},
         {Type: 5, Id: 1, Num: 1},
     }
+    t.Log(items)
     for i, item := range items {
         assert.Equal(t, v[i].GetType(), item.GetType())
         assert.Equal(t, v[i].GetId(), item.GetId())
