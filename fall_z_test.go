@@ -3,6 +3,7 @@ package fall_test
 import (
     "testing"
 
+    "github.com/camry/g/gutil/grand"
     "github.com/stretchr/testify/assert"
 
     "github.com/camry/fall"
@@ -11,19 +12,19 @@ import (
 
 func TestNew(t *testing.T) {
     seed := int64(10000)
-    f := fall.New(fall.Seed(seed))
-    assert.Equal(t, seed, f.Seed())
+    f := fall.New(fall.Rand(grand.NewRand(seed)))
+    assert.Equal(t, 2, f.Rand().RangeInt(1, 5))
 }
 
 func TestRand(t *testing.T) {
     seed := int64(10000)
-    f := fall.New(fall.Seed(seed))
+    f := fall.New(fall.Rand(grand.NewRand(seed)))
     assert.True(t, f.Rand().HitProb(0.80))
 }
 
 func TestRunPercent(t *testing.T) {
     f := fall.New(
-        fall.Seed(1683699333882771600),
+        fall.Rand(grand.NewRand(1683699333882771600)),
         fall.Mode(fall.PercentMode),
         fall.TablePercents([]*pb.TablePercent{
             {Type: 1, Id: 1, Prob: 0.15, Min: 1, Max: 2},
@@ -48,7 +49,7 @@ func TestRunPercent(t *testing.T) {
 
 func TestRunWeightGroup(t *testing.T) {
     f := fall.New(
-        fall.Seed(1683699333882771600),
+        fall.Rand(grand.NewRand(1683699333882771600)),
         fall.Mode(fall.WeightGroupMode),
         fall.TableWeightGroupMasters([]*pb.TableWeightGroupMaster{
             {MasterId: 101, SubsetId: 1001, NextSubsetId: 0, NextSubsetMin: 0, NextSubsetMax: 0},
@@ -81,7 +82,7 @@ func TestRunWeightGroup(t *testing.T) {
 
 func TestRunAdvance(t *testing.T) {
     f := fall.New(
-        fall.Seed(1683699333882771600),
+        fall.Rand(grand.NewRand(1683699333882771600)),
         fall.Mode(fall.AdvanceMode),
         fall.TableWeightGroupMasters([]*pb.TableWeightGroupMaster{
             {MasterId: 101, SubsetId: 1001, NextSubsetId: 1002, NextSubsetMin: 2, NextSubsetMax: 3, AdvanceNum: 2},
@@ -119,7 +120,7 @@ func TestRunAdvance(t *testing.T) {
 
 func TestVat(t *testing.T) {
     f := fall.New(
-        fall.Seed(1683699333882771600),
+        fall.Rand(grand.NewRand(1683699333882771600)),
         fall.Mode(fall.VatMode),
         fall.TableVats([]*pb.TableVat{
             {VatId: 10001, FallType: 101, FallTypeId: 1001, VatNumMin: 1, VatNumMax: 1, ExpectNum: 1000, ExistingNum: 0},

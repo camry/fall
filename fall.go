@@ -2,11 +2,11 @@ package fall
 
 import (
     "context"
-    "time"
 
-    "github.com/camry/fall/pb"
     "github.com/camry/g/gerrors/gerror"
     "github.com/camry/g/gutil/grand"
+
+    "github.com/camry/fall/pb"
 )
 
 type DropMode int8
@@ -33,24 +33,17 @@ type Fall struct {
 // New 新建掉落对象。
 func New(opts ...Option) *Fall {
     f := &Fall{
-        ctx:  context.Background(),
-        seed: time.Now().UnixNano(),
+        ctx: context.Background(),
     }
     for _, opt := range opts {
         opt(f)
     }
-    f.rand = grand.NewRand(f.seed)
     return f
 }
 
 // Ctx 上下文。
 func (f *Fall) Ctx() context.Context {
     return f.ctx
-}
-
-// Seed 随机种子。
-func (f *Fall) Seed() int64 {
-    return f.seed
 }
 
 // Rand 种子随机数对象。

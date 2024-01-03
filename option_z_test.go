@@ -4,8 +4,10 @@ import (
     "context"
     "testing"
 
-    "github.com/camry/fall"
+    "github.com/camry/g/gutil/grand"
     "github.com/stretchr/testify/assert"
+
+    "github.com/camry/fall"
 )
 
 func TestContext(t *testing.T) {
@@ -15,8 +17,9 @@ func TestContext(t *testing.T) {
 }
 
 func TestSeed(t *testing.T) {
-    f := fall.New(fall.Seed(10000))
-    assert.Equal(t, int64(10000), f.Seed())
+    rand := grand.NewRand(10000)
+    f := fall.New(fall.Rand(rand))
+    assert.Equal(t, rand, f.Rand())
 }
 
 func TestMode(t *testing.T) {

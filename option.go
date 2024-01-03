@@ -3,6 +3,8 @@ package fall
 import (
     "context"
 
+    "github.com/camry/g/gutil/grand"
+
     "github.com/camry/fall/pb"
 )
 
@@ -13,9 +15,9 @@ func Context(ctx context.Context) Option {
     return func(f *Fall) { f.ctx = ctx }
 }
 
-// Seed 设置随机种子。
-func Seed(seed int64) Option {
-    return func(f *Fall) { f.seed = seed }
+// Rand 设置种子随机数 GRand。
+func Rand(rand *grand.GRand) Option {
+    return func(f *Fall) { f.rand = rand }
 }
 
 // Mode 设置掉落模式。
