@@ -56,7 +56,7 @@ func (f *Fall) dropAdvanceWeightGroup(enableAdvance bool) []*pb.Item {
         for _, subset := range tableWeightGroupSubsets[subsetId] {
             isDrop := false
             rangeWeightCurrent += subset.GetSubsetWeight()
-            if randWeight > rangeWeightLast && randWeight < rangeWeightCurrent {
+            if randWeight > rangeWeightLast && randWeight <= rangeWeightCurrent {
                 isDrop = true
             }
             rangeWeightLast += subset.GetSubsetWeight()
