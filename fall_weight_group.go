@@ -2,7 +2,6 @@ package fall
 
 import (
     "github.com/camry/g/gerrors/gerror"
-    "github.com/camry/g/glog"
 
     "github.com/camry/fall/pb"
 )
@@ -40,7 +39,6 @@ func (f *Fall) dropAdvanceWeightGroup(enableAdvance bool) []*pb.Item {
     for _, master := range f.TableWeightGroupMasters() {
         // 排除进阶子集
         if master.GetMasterId() <= 0 {
-            glog.Errorf(`fall dropAdvanceWeightGroup Error For master.GetMasterId() <= 0`)
             continue
         }
         // 判断母集是否产生进阶掉落

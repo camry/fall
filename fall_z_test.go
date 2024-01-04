@@ -86,8 +86,8 @@ func TestRunAdvance(t *testing.T) {
         fall.Mode(fall.AdvanceMode),
         fall.TableWeightGroupMasters([]*pb.TableWeightGroupMaster{
             {MasterId: 101, SubsetId: 1001, NextSubsetId: 1002, NextSubsetMin: 2, NextSubsetMax: 3, AdvanceNum: 2},
-            {MasterId: 101, SubsetId: 1002, NextSubsetId: 1003, NextSubsetMin: 3, NextSubsetMax: 5, AdvanceNum: 2},
-            {MasterId: 101, SubsetId: 1003, NextSubsetId: 0, NextSubsetMin: 0, NextSubsetMax: 0, AdvanceNum: 0},
+            {MasterId: 0, SubsetId: 1002, NextSubsetId: 1003, NextSubsetMin: 3, NextSubsetMax: 5, AdvanceNum: 1},
+            {MasterId: 0, SubsetId: 1003, NextSubsetId: 0, NextSubsetMin: 0, NextSubsetMax: 0, AdvanceNum: 0},
             {MasterId: 101, SubsetId: 1004, NextSubsetId: 0, NextSubsetMin: 0, NextSubsetMax: 0, AdvanceNum: 0},
             {MasterId: 101, SubsetId: 1005, NextSubsetId: 0, NextSubsetMin: 0, NextSubsetMax: 0, AdvanceNum: 0},
         }),
@@ -106,9 +106,9 @@ func TestRunAdvance(t *testing.T) {
     items, err := f.Run()
     assert.Nil(t, err)
     v := []*pb.Item{
-        {Type: 1, Id: 0, Num: 8531},
+        {Type: 1, Id: 0, Num: 7566},
         {Type: 4, Id: 2, Num: 1},
-        {Type: 5, Id: 1, Num: 1},
+        {Type: 5, Id: 3, Num: 1},
     }
     for i, item := range items {
         assert.Equal(t, v[i].GetType(), item.GetType())
