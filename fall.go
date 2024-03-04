@@ -3,10 +3,9 @@ package fall
 import (
     "context"
 
+    "github.com/camry/fall/pb"
     "github.com/camry/g/gerrors/gerror"
     "github.com/camry/g/gutil/grand"
-
-    "github.com/camry/fall/pb"
 )
 
 type DropMode int8
