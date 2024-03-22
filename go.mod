@@ -5,7 +5,7 @@ go 1.20
 require (
 	github.com/camry/g v1.2.10
 	github.com/stretchr/testify v1.8.4
-	google.golang.org/protobuf v1.32.0
+	google.golang.org/protobuf v1.33.0
 )
 
 require (
