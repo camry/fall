@@ -25,12 +25,13 @@ message TableWeightGroupMaster {
 
 // 权重掉落组式掉落子集表
 message TableWeightGroupSubset {
-  int32 subset_id = 1; // 子集编号
-  int32 fall_type = 2; // 掉落种类
-  int32 fall_type_id = 3; // 掉落种类编号
-  int32 subset_num_min = 4; // 最小数量
-  int32 subset_num_max = 5; // 最大数量
-  int32 subset_weight = 6; // 权重
+  int32 auto_id = 1; // 自动编号
+  int32 subset_id = 2; // 子集编号
+  int32 fall_type = 3; // 掉落种类
+  int32 fall_type_id = 4; // 掉落种类编号
+  int32 subset_num_min = 5; // 最小数量
+  int32 subset_num_max = 6; // 最大数量
+  int32 subset_weight = 7; // 权重
 }
 
 // 木桶原理掉落表

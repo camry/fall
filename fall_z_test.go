@@ -86,31 +86,32 @@ func TestRunAdvance(t *testing.T) {
         fall.Mode(fall.AdvanceMode),
         fall.TableWeightGroupMasters([]*pb.TableWeightGroupMaster{
             {MasterId: 101, SubsetId: 1001, NextSubsetId: 1002, NextSubsetMin: 2, NextSubsetMax: 3, AdvanceNum: 2},
-            {MasterId: 0, SubsetId: 1002, NextSubsetId: 1003, NextSubsetMin: 3, NextSubsetMax: 5, AdvanceNum: 1},
-            {MasterId: 0, SubsetId: 1003, NextSubsetId: 0, NextSubsetMin: 0, NextSubsetMax: 0, AdvanceNum: 0},
+            {MasterId: 101, SubsetId: 1002, IsNextSubset: true, NextSubsetId: 1003, NextSubsetMin: 3, NextSubsetMax: 5, AdvanceNum: 1},
+            {MasterId: 101, SubsetId: 1003, IsNextSubset: true, NextSubsetId: 0, NextSubsetMin: 0, NextSubsetMax: 0, AdvanceNum: 0},
             {MasterId: 101, SubsetId: 1004, NextSubsetId: 0, NextSubsetMin: 0, NextSubsetMax: 0, AdvanceNum: 0},
             {MasterId: 101, SubsetId: 1005, NextSubsetId: 0, NextSubsetMin: 0, NextSubsetMax: 0, AdvanceNum: 0},
         }),
         fall.TableWeightGroupSubsets([]*pb.TableWeightGroupSubset{
-            {SubsetId: 1001, FallType: 1, FallTypeId: 0, SubsetNumMin: 1, SubsetNumMax: 2000, SubsetWeight: 2000},
-            {SubsetId: 1002, FallType: 1, FallTypeId: 0, SubsetNumMin: 5000, SubsetNumMax: 10000, SubsetWeight: 2000},
-            {SubsetId: 1003, FallType: 2, FallTypeId: 1, SubsetNumMin: 20, SubsetNumMax: 20, SubsetWeight: 1},
-            {SubsetId: 1004, FallType: 4, FallTypeId: 1, SubsetNumMin: 1, SubsetNumMax: 3, SubsetWeight: 1000},
-            {SubsetId: 1004, FallType: 4, FallTypeId: 2, SubsetNumMin: 1, SubsetNumMax: 3, SubsetWeight: 1000},
-            {SubsetId: 1004, FallType: 4, FallTypeId: 3, SubsetNumMin: 1, SubsetNumMax: 3, SubsetWeight: 1000},
-            {SubsetId: 1005, FallType: 5, FallTypeId: 1, SubsetNumMin: 1, SubsetNumMax: 1, SubsetWeight: 2000},
-            {SubsetId: 1005, FallType: 5, FallTypeId: 2, SubsetNumMin: 1, SubsetNumMax: 1, SubsetWeight: 2000},
-            {SubsetId: 1005, FallType: 5, FallTypeId: 3, SubsetNumMin: 1, SubsetNumMax: 1, SubsetWeight: 4000},
+            {AutoId: 1, SubsetId: 1001, FallType: 1, FallTypeId: 0, SubsetNumMin: 1, SubsetNumMax: 2000, SubsetWeight: 2000},
+            {AutoId: 2, SubsetId: 1002, FallType: 1, FallTypeId: 0, SubsetNumMin: 5000, SubsetNumMax: 10000, SubsetWeight: 2000},
+            {AutoId: 3, SubsetId: 1003, FallType: 2, FallTypeId: 1, SubsetNumMin: 20, SubsetNumMax: 20, SubsetWeight: 1},
+            {AutoId: 4, SubsetId: 1004, FallType: 4, FallTypeId: 1, SubsetNumMin: 1, SubsetNumMax: 3, SubsetWeight: 1000},
+            {AutoId: 5, SubsetId: 1004, FallType: 4, FallTypeId: 2, SubsetNumMin: 1, SubsetNumMax: 3, SubsetWeight: 1000},
+            {AutoId: 6, SubsetId: 1004, FallType: 4, FallTypeId: 3, SubsetNumMin: 1, SubsetNumMax: 3, SubsetWeight: 1000},
+            {AutoId: 7, SubsetId: 1005, FallType: 5, FallTypeId: 1, SubsetNumMin: 1, SubsetNumMax: 1, SubsetWeight: 2000},
+            {AutoId: 8, SubsetId: 1005, FallType: 5, FallTypeId: 2, SubsetNumMin: 1, SubsetNumMax: 1, SubsetWeight: 2000},
+            {AutoId: 9, SubsetId: 1005, FallType: 5, FallTypeId: 3, SubsetNumMin: 1, SubsetNumMax: 1, SubsetWeight: 4000},
         }),
     )
     items, err := f.Run()
     assert.Nil(t, err)
     v := []*pb.Item{
-        {Type: 1, Id: 0, Num: 7566},
-        {Type: 4, Id: 2, Num: 1},
-        {Type: 5, Id: 3, Num: 1},
+        {AutoId: 2, Type: 1, Id: 0, Num: 7566},
+        {AutoId: 5, Type: 4, Id: 2, Num: 1},
+        {AutoId: 9, Type: 5, Id: 3, Num: 1},
     }
     for i, item := range items {
+        assert.Equal(t, v[i].GetAutoId(), item.GetAutoId())
         assert.Equal(t, v[i].GetType(), item.GetType())
         assert.Equal(t, v[i].GetId(), item.GetId())
         assert.Equal(t, v[i].GetNum(), item.GetNum())

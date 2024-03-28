@@ -5,8 +5,9 @@ option go_package = ".;pb";
 
 // 掉落物品
 message Item {
-  int32 type = 1; // 物品种类
-  int32 id = 2; // 物品编号
-  int32 num = 3; // 物品数量
-  int32 weight = 4; // 物品权重
+  int32 auto_id = 1; // 物品编号
+  int32 type = 2; // 物品种类
+  int32 id = 3; // 物品编号
+  int32 num = 4; // 物品数量
+  int32 weight = 5; // 物品权重
 }
