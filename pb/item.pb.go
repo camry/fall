@@ -26,11 +26,11 @@ type Item struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	AutoId int32 `protobuf:"varint,1,opt,name=auto_id,json=autoId,proto3" json:"auto_id,omitempty" gorm:"column:auto_id" redis:"auto_id,omitempty"` // 物品编号
-	Type   int32 `protobuf:"varint,2,opt,name=type,proto3" json:"type,omitempty" gorm:"column:type" redis:"type,omitempty"`                         // 物品种类
-	Id     int32 `protobuf:"varint,3,opt,name=id,proto3" json:"id,omitempty" gorm:"column:id" redis:"id,omitempty"`                                 // 物品编号
-	Num    int32 `protobuf:"varint,4,opt,name=num,proto3" json:"num,omitempty" gorm:"column:num" redis:"num,omitempty"`                             // 物品数量
-	Weight int32 `protobuf:"varint,5,opt,name=weight,proto3" json:"weight,omitempty" gorm:"column:weight" redis:"weight,omitempty"`                 // 物品权重
+	AutoId int32 `protobuf:"varint,1,opt,name=auto_id,json=autoId,proto3" json:"auto_id,omitempty" gorm:"column:auto_id" redis:"auto_id"` // 物品编号
+	Type   int32 `protobuf:"varint,2,opt,name=type,proto3" json:"type,omitempty" gorm:"column:type" redis:"type"`                         // 物品种类
+	Id     int32 `protobuf:"varint,3,opt,name=id,proto3" json:"id,omitempty" gorm:"column:id" redis:"id"`                                 // 物品编号
+	Num    int32 `protobuf:"varint,4,opt,name=num,proto3" json:"num,omitempty" gorm:"column:num" redis:"num"`                             // 物品数量
+	Weight int32 `protobuf:"varint,5,opt,name=weight,proto3" json:"weight,omitempty" gorm:"column:weight" redis:"weight"`                 // 物品权重
 }
 
 func (x *Item) Reset() {

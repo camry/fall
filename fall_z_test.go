@@ -27,18 +27,18 @@ func TestRunPercent(t *testing.T) {
         fall.Rand(grand.NewRand(1683699333882771600)),
         fall.Mode(fall.PercentMode),
         fall.TablePercents([]*pb.TablePercent{
-            {Type: 1, Id: 1, Prob: 0.15, Min: 1, Max: 2},
-            {Type: 1, Id: 2, Prob: 0.20, Min: 1, Max: 3},
-            {Type: 1, Id: 3, Prob: 0.25, Min: 1, Max: 4},
-            {Type: 1, Id: 4, Prob: 0.30, Min: 1, Max: 5},
+            {AutoId: 1, FallType: 1, FallTypeId: 1, Prob: 0.15, NumMin: 1, NumMax: 2},
+            {AutoId: 2, FallType: 1, FallTypeId: 2, Prob: 0.20, NumMin: 1, NumMax: 3},
+            {AutoId: 3, FallType: 1, FallTypeId: 3, Prob: 0.25, NumMin: 1, NumMax: 4},
+            {AutoId: 4, FallType: 1, FallTypeId: 4, Prob: 0.30, NumMin: 1, NumMax: 5},
         }),
     )
     items, err := f.Run()
     assert.Nil(t, err)
     v := []*pb.Item{
-        {Type: 1, Id: 2, Num: 2},
-        {Type: 1, Id: 3, Num: 3},
-        {Type: 1, Id: 4, Num: 2},
+        {AutoId: 2, Type: 1, Id: 2, Num: 2},
+        {AutoId: 3, Type: 1, Id: 3, Num: 3},
+        {AutoId: 4, Type: 1, Id: 4, Num: 2},
     }
     for i, item := range items {
         assert.Equal(t, v[i].GetType(), item.GetType())

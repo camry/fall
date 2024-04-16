@@ -15,9 +15,10 @@ func (f *Fall) runPercent() ([]*pb.Item, error) {
     for _, v := range f.TablePercents() {
         if f.Rand().HitProb(v.GetProb()) {
             items = append(items, &pb.Item{
-                Type: v.GetType(),
-                Id:   v.GetId(),
-                Num:  int32(f.Rand().RangeInt(int(v.GetMin()), int(v.GetMax()))),
+                AutoId: v.GetAutoId(),
+                Type:   v.GetFallType(),
+                Id:     v.GetFallTypeId(),
+                Num:    int32(f.Rand().RangeInt(int(v.GetNumMin()), int(v.GetNumMax()))),
             })
         }
     }
