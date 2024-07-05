@@ -83,7 +83,7 @@ func (f *Fall) nextSubset(master *pb.TableWeightGroupMaster, tableWeightGroupMas
             return f.nextSubset(nextMaster, tableWeightGroupMasters)
         }
     } else {
-        if nextMaster, ok := tableWeightGroupMasters[master.GetNextSubsetId()]; ok {
+        if nextMaster, ok := tableWeightGroupMasters[master.GetNextSubsetId()]; ok && !nextMaster.IsNextSubset {
             nextMaster.AdvanceNum = 0
         }
     }
