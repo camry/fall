@@ -1,8 +1,6 @@
 package fall
 
 import (
-    "slices"
-
     "github.com/camry/g/gerrors/gerror"
     "github.com/camry/g/glog"
 
@@ -49,15 +47,9 @@ func (f *Fall) dropAdvanceWeightGroup(enableAdvance bool) []*pb.Item {
         if enableAdvance {
             subsetId = f.nextSubset(master, tableWeightGroupMasters).GetSubsetId()
         }
-        // 子集权重优先级排序（低->高）
-        slices.SortStableFunc(tableWeightGroupSubsets[subsetId], func(a, b *pb.TableWeightGroupSubset) int {
-            if a.GetSubsetWeight() < b.GetSubsetWeight() {
-                return -1
-            }
-            if a.GetSubsetWeight() > b.GetSubsetWeight() {
-                return 1
-            }
-            return 0
+        // 子集权重打乱顺序
+        f.Rand().Shuffle(len(tableWeightGroupSubsets[subsetId]), func(i, j int) {
+            tableWeightGroupSubsets[subsetId][i], tableWeightGroupSubsets[subsetId][j] = tableWeightGroupSubsets[subsetId][j], tableWeightGroupSubsets[subsetId][i]
         })
         // 生成基于总权重的随机数
         subsetTotalWeight := subsetTotalWeights[subsetId]
