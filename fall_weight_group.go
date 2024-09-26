@@ -68,7 +68,7 @@ func (f *Fall) dropAdvanceWeightGroup(enableAdvance bool) []*pb.Item {
             isDrop := false
             rangeWeightCurrent += subset.GetSubsetWeight()
             if randWeight > rangeWeightLast && randWeight <= rangeWeightCurrent {
-                glog.Debugf("MasterId %d SubsetId %d TotalWeight %d RandWeight %d GT %d LE %d", master.GetMasterId(), subset.GetSubsetId(), subsetTotalWeight, randWeight, rangeWeightLast, rangeWeightCurrent)
+                glog.Debugf("FallMasterId %d SubsetId %d AutoId %d TotalWeight %d RandWeight %d GT %d LE %d", master.GetMasterId(), subset.GetSubsetId(), subset.GetAutoId(), subsetTotalWeight, randWeight, rangeWeightLast, rangeWeightCurrent)
                 isDrop = true
             }
             rangeWeightLast += subset.GetSubsetWeight()
