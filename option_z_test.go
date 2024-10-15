@@ -4,7 +4,7 @@ import (
     "context"
     "testing"
 
-    "github.com/camry/g/gutil/grand"
+    "github.com/camry/g/gutil/grand/v2"
     "github.com/stretchr/testify/assert"
 
     "github.com/camry/fall"

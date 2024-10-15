@@ -3,7 +3,7 @@ package fall_test
 import (
     "testing"
 
-    "github.com/camry/g/gutil/grand"
+    "github.com/camry/g/gutil/grand/v2"
     "github.com/stretchr/testify/assert"
 
     "github.com/camry/fall"
@@ -12,13 +12,13 @@ import (
 
 func TestNew(t *testing.T) {
     seed := int64(10000)
-    f := fall.New(fall.Rand(grand.NewRand(seed)))
-    assert.Equal(t, 2, f.Rand().RangeInt(1, 5))
+    f := fall.New(fall.Rand(grand.NewRand(uint64(seed))))
+    assert.Equal(t, 1, f.Rand().RangeInt(1, 5))
 }
 
 func TestRand(t *testing.T) {
     seed := int64(10000)
-    f := fall.New(fall.Rand(grand.NewRand(seed)))
+    f := fall.New(fall.Rand(grand.NewRand(uint64(seed))))
     assert.True(t, f.Rand().HitProb(0.80))
 }
 
@@ -69,9 +69,9 @@ func TestRunWeightGroup(t *testing.T) {
     items, err := f.Run()
     assert.Nil(t, err)
     v := []*pb.Item{
-        {Type: 1, Id: 0, Num: 1811},
-        {Type: 2, Id: 2, Num: 2},
-        {Type: 3, Id: 1, Num: 1},
+        {Type: 1, Id: 0, Num: 1267},
+        {Type: 2, Id: 2, Num: 3},
+        {Type: 3, Id: 3, Num: 1},
     }
     for i, item := range items {
         assert.Equal(t, v[i].GetType(), item.GetType())
@@ -105,9 +105,10 @@ func TestRunAdvance(t *testing.T) {
     )
     items, err := f.Run()
     assert.Nil(t, err)
+    t.Log(items)
     v := []*pb.Item{
-        {AutoId: 2, Type: 1, Id: 0, Num: 7566},
-        {AutoId: 5, Type: 4, Id: 2, Num: 1},
+        {AutoId: 2, Type: 1, Id: 0, Num: 9287},
+        {AutoId: 4, Type: 4, Id: 1, Num: 2},
         {AutoId: 9, Type: 5, Id: 3, Num: 1},
     }
     for i, item := range items {

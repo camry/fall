@@ -3,7 +3,7 @@ package fall
 import (
     "context"
 
-    "github.com/camry/g/gutil/grand"
+    "github.com/camry/g/gutil/grand/v2"
 
     "github.com/camry/fall/pb"
 )
