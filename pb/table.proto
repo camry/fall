@@ -30,9 +30,10 @@ message TableWeightGroupSubset {
   int32 subset_id = 2; // 子集编号
   int32 fall_type = 3; // 掉落种类
   int32 fall_type_id = 4; // 掉落种类编号
-  int32 subset_num_min = 5; // 最小数量
-  int32 subset_num_max = 6; // 最大数量
-  int32 subset_weight = 7; // 权重
+  int32 fall_star_level = 5; // 掉落星级
+  int32 subset_num_min = 6; // 最小数量
+  int32 subset_num_max = 7; // 最大数量
+  int32 subset_weight = 8; // 权重
 }
 
 // 木桶原理掉落表

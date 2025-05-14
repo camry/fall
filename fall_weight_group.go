@@ -66,11 +66,12 @@ func (f *Fall) dropAdvanceWeightGroup(enableAdvance bool) []*pb.Item {
             rangeWeightLast += subset.GetSubsetWeight()
             if isDrop {
                 items = append(items, &pb.Item{
-                    AutoId: subset.GetAutoId(),
-                    Type:   subset.GetFallType(),
-                    Id:     subset.GetFallTypeId(),
-                    Num:    int32(f.Rand().RangeInt(int(subset.GetSubsetNumMin()), int(subset.GetSubsetNumMax()))),
-                    Weight: subset.GetSubsetWeight(),
+                    AutoId:    subset.GetAutoId(),
+                    Type:      subset.GetFallType(),
+                    Id:        subset.GetFallTypeId(),
+                    Num:       int32(f.Rand().RangeInt(int(subset.GetSubsetNumMin()), int(subset.GetSubsetNumMax()))),
+                    StarLevel: subset.GetFallStarLevel(),
+                    Weight:    subset.GetSubsetWeight(),
                 })
                 break
             }
